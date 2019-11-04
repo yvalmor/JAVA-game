@@ -1,6 +1,6 @@
 package com.tutorial.main;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public abstract class GameObject {
 
