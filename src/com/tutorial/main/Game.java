@@ -1,6 +1,7 @@
 package com.tutorial.main;
 
-import java.awt.Canvas;
+import java.awt.*;
+import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable {
 
@@ -18,6 +19,7 @@ public class Game extends Canvas implements Runnable {
     public synchronized void start(){
         thread = new Thread(this);
         thread.start();
+        running = true;
     }
 
     public synchronized void stop() {
@@ -59,8 +61,24 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
-    public static void main(String[] args) {
+    private void tick() {
+    }
 
+    private void render() {
+        BufferStrategy bs = this.getBufferStrategy();
+        if (bs == null) {
+            this.createBufferStrategy(3);
+            return;
+        }
+
+        Graphics g = bs.getDrawGraphics();
+
+        g.dispose();
+        bs.show();
+    }
+
+    public static void main(String[] args) {
+        new Game();
     }
 
 }
